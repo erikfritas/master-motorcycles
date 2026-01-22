@@ -36,48 +36,50 @@
         .nav-desktop a { color: #fff; text-decoration: none; font-family: 'Orbitron'; font-size: 0.8rem; transition: 0.3s; opacity: 0.7; }
         .nav-desktop a:hover { color: var(--primary); opacity: 1; }
 
-        /* MOBILE MENU */
+        /* MOBILE MENU GRID */
         .menu-toggle { display: none; font-size: 1.5rem; color: var(--primary); cursor: pointer; }
         .mobile-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: var(--dark); z-index: 3000; display: none; flex-direction: column; justify-content: center; align-items: center;
         }
-        .mobile-overlay.active { display: flex; }
+        .mobile-overlay.active { display: flex; animation: fadeIn 0.3s ease; }
         .mobile-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; width: 90%; max-width: 400px; }
         .mobile-item { background: var(--grey); padding: 25px; border-radius: 15px; text-align: center; border: 1px solid #333; text-decoration: none; color: var(--white); }
         .mobile-item i { font-size: 1.8rem; color: var(--secondary); margin-bottom: 10px; display: block; }
         .mobile-credits { margin-top: 40px; text-align: center; font-size: 0.8rem; color: #666; }
+        .mobile-credits a { color: var(--primary); text-decoration: none; }
 
         /* HERO */
         .header-spacer { height: 80px; }
         .hero { 
-            height: 60vh; background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('./imgs/nmax2025.webp') center/cover; 
+            height: 60vh; background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('./imgs/nmax.webp') center/cover; 
             display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 20px; 
         }
 
         /* SECTIONS */
-        section { padding: 80px 10%; }
+        section { padding: 60px 10%; }
         .btn-quote { 
             background: var(--primary); color: #000; padding: 15px 35px; border-radius: 50px; 
             text-decoration: none; font-weight: bold; font-family: 'Orbitron'; transition: 0.3s; display: inline-block;
         }
+        .btn-quote:hover { transform: scale(1.05); box-shadow: 0 0 20px rgba(193, 255, 0, 0.4); }
         
         .about-section { display: flex; align-items: center; gap: 40px; flex-wrap: wrap; background: #050505; }
         .about-image img { width: 100%; max-width: 400px; border-radius: 20px; border: 2px solid var(--secondary); }
 
         .models-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
         .moto-card { background: var(--grey); border-radius: 20px; overflow: hidden; border: 1px solid #333; text-align: center; padding-bottom: 25px;}
-        .moto-card img { width: 100%; height: 250px; object-fit: cover; }
+        .moto-card img { width: 100%; height: 280px; object-fit: cover; }
 
-        /* TESTIMONIALS FIX */
+        /* TESTIMONIALS */
         .testimonials { background: var(--dark); }
         .testimonial-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
-        .test-card { background: var(--grey); padding: 30px; border-radius: 15px; border-left: 4px solid var(--secondary); min-height: 200px; display: flex; flex-direction: column; justify-content: space-between; }
-        .test-card p { font-style: italic; margin-bottom: 15px; line-height: 1.5; }
+        .test-card { background: var(--grey); padding: 30px; border-radius: 15px; border-left: 4px solid var(--secondary); min-height: 200px; }
+        .test-card i { color: var(--primary); margin-bottom: 10px; font-size: 1.2rem; }
 
-        /* ACCESSORIES */
+        /* UPGRADES (ACCESSORIES) */
         .accessories-section { background: #050505; }
-        .swiper { padding-bottom: 50px; }
+        .swiper { padding: 40px 0; }
         .swiper-slide { background: var(--grey); padding: 30px; border-radius: 15px; text-align: center; }
         .swiper-slide i { font-size: 2.5rem; color: var(--primary); margin-bottom: 15px; display: block;}
 
@@ -85,10 +87,11 @@
             position: fixed; bottom: 25px; right: 25px; z-index: 2500;
             background: #25d366; width: 60px; height: 60px; border-radius: 50%;
             display: flex; align-items: center; justify-content: center; font-size: 30px; color: white;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5); animation: pulse 2s infinite;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5); animation: pulse 2s infinite; text-decoration: none;
         }
 
-        @keyframes pulse { 0% { transform: scale(1); } 70% { transform: scale(1.1); } 100% { transform: scale(1); } }
+        @keyframes pulse { 0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); } 70% { transform: scale(1.1); box-shadow: 0 0 0 10px rgba(37, 211, 102, 0); } 100% { transform: scale(1); } }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
 
         @media (max-width: 768px) { .nav-desktop { display: none; } .menu-toggle { display: block; } .about-section { text-align: center; justify-content: center; } }
     </style>
@@ -107,7 +110,7 @@
     </header>
 
     <div class="mobile-overlay" id="mobileMenu">
-        <div style="position: absolute; top: 25px; right: 5%; font-size: 2rem; color: var(--primary);" id="closeMenu"><i class="fas fa-times"></i></div>
+        <div style="position: absolute; top: 25px; right: 5%; font-size: 2rem; color: var(--primary); cursor: pointer;" id="closeMenu"><i class="fas fa-times"></i></div>
         <div class="mobile-grid">
             <a href="#home" class="mobile-item"><i class="fas fa-home"></i><span>HOME</span></a>
             <a href="#sobre" class="mobile-item"><i class="fas fa-user-tie"></i><span>DOUGLAS</span></a>
@@ -123,7 +126,7 @@
 
     <section class="hero">
         <h1 data-aos="zoom-in">MASTER MOTORCYCLES</h1>
-        <p data-aos="fade-up">A sua NMAX ou PCX 2025 está aqui em Londres.</p>
+        <p data-aos="fade-up">As melhores NMAX e PCX 2025 de Londres.</p>
         <a href="https://wa.me/447517596540" target="_blank" class="btn-quote" style="margin-top:20px;">OBTER ORÇAMENTO</a>
     </section>
 
@@ -131,13 +134,13 @@
         <div class="about-image" data-aos="fade-right"><img src="./imgs/douglas.jpeg" alt="Douglas"></div>
         <div class="about-content" data-aos="fade-left">
             <h2>Douglas</h2>
-            <p>Com 10 anos de experiência, Douglas oferece atendimento personalizado, café cortesia e as melhores motos.</p>
+            <p>Com mais de 10 anos de experiência em motos, ofereço um atendimento exclusivo com café na loja e as melhores condições de financiamento para a nossa comunidade em Londres.</p>
         </div>
     </section>
 
     <section id="motos" class="models-grid">
         <div class="moto-card" data-aos="fade-up">
-            <img src="./imgs/nmax2025.webp" alt="Yamaha NMAX 2025">
+            <img src="./imgs/nmax.webp" alt="Yamaha NMAX 2025">
             <div style="padding: 20px;">
                 <h3>NMAX 2025</h3>
                 <p>Entrada £850 + 21x £200</p><br>
@@ -145,7 +148,7 @@
             </div>
         </div>
         <div class="moto-card" data-aos="fade-up" data-aos-delay="200">
-            <img src="./imgs/pcx2025.jpeg" alt="Honda PCX 2025">
+            <img src="./imgs/pcx.jpeg" alt="Honda PCX 2025">
             <div style="padding: 20px;">
                 <h3>PCX 2025</h3>
                 <p>Entrada £850 + 21x £200</p><br>
@@ -155,22 +158,26 @@
     </section>
 
     <section class="testimonials">
-        <h2 style="text-align:center; margin-bottom:40px;">Depoimentos</h2>
+        <h2 style="text-align:center; margin-bottom:40px;">Depoimentos Reais</h2>
         <div class="testimonial-grid">
             <div class="test-card">
-                <p>"Processo rápido e transparente. Recomendo o Douglas para todos."</p>
+                <i class="fas fa-star"></i>
+                <p>"Douglas facilitou tudo. Saí de moto nova sem complicação e o atendimento foi excelente."</p>
                 <h4>- Leo Gomes</h4>
             </div>
             <div class="test-card">
-                <p>"A melhor loja de Londres. Atendimento e café nota 10."</p>
+                <i class="fas fa-star"></i>
+                <p>"A melhor loja de Londres. Atendimento e café nota 10. Recomendo a todos os brasileiros."</p>
                 <h4>- Clementino</h4>
             </div>
             <div class="test-card">
-                <p>"Minha moto veio perfeita e com todos os acessórios que pedi."</p>
+                <i class="fas fa-star"></i>
+                <p>"Minha moto veio perfeita e com todos os acessórios. Douglas é muito honesto e profissional."</p>
                 <h4>- Bruno Giovani</h4>
             </div>
             <div class="test-card">
-                <p>"Douglas facilitou tudo. Saí de moto nova sem complicação."</p>
+                <i class="fas fa-star"></i>
+                <p>"Fui muito bem atendido. O processo de financiamento foi transparente e rápido."</p>
                 <h4>- Erik Freitas</h4>
             </div>
         </div>
@@ -184,26 +191,36 @@
                 <div class="swiper-slide"><i class="fas fa-fire"></i><h3>Hotgrips</h3></div>
                 <div class="swiper-slide"><i class="fas fa-map-marker-alt"></i><h3>GPS Live</h3></div>
                 <div class="swiper-slide"><i class="fas fa-mobile-alt"></i><h3>Suporte Celular</h3></div>
+                <div class="swiper-slide"><i class="fas fa-shield-alt"></i><h3>Rastreador</h3></div>
             </div>
             <div class="swiper-pagination"></div>
         </div>
     </section>
 
-    <footer style="padding:40px; text-align:center; border-top:1px solid #222;">
+    <footer style="padding:40px; text-align:center; border-top: 1px solid #222;">
         <p>836–840 Hertford Rd, Enfield EN3 6UE</p>
-        <p style="margin-top:10px;">Criado por <a href="https://instagram.com/erikfritas" style="color:var(--primary); text-decoration:none;">Erik Freitas</a></p>
+        <p style="margin-top:15px; font-size: 0.9rem;">
+            &copy; 2025 Master Motorcycles | Criado por <a href="https://instagram.com/erikfritas" target="_blank" style="color:var(--primary); text-decoration:none;">Erik Freitas</a>
+        </p>
     </footer>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
         AOS.init({ duration: 1000, once: true });
+        
+        // Carrossel de Upgrades
         new Swiper(".mySwiper", {
             slidesPerView: 1, spaceBetween: 20, loop: true, autoplay: { delay: 3000 },
             pagination: { el: ".swiper-pagination", clickable: true },
             breakpoints: { 640: { slidesPerView: 2 }, 1024: { slidesPerView: 4 } }
         });
-        const openBtn = document.getElementById('openMenu'), closeBtn = document.getElementById('closeMenu'), menu = document.getElementById('mobileMenu');
+
+        // Menu Mobile
+        const openBtn = document.getElementById('openMenu'), 
+              closeBtn = document.getElementById('closeMenu'), 
+              menu = document.getElementById('mobileMenu');
+
         openBtn.onclick = () => menu.classList.add('active');
         closeBtn.onclick = () => menu.classList.remove('active');
         document.querySelectorAll('.mobile-item').forEach(l => l.onclick = () => menu.classList.remove('active'));
