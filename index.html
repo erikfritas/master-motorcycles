@@ -3,117 +3,226 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Master Motorcycles | Londres - NMAX & PCX 2025</title>
+    <title>Master Motorcycles | Douglas - NMAX & PCX 2025</title>
+    
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
     <style>
         :root {
-            --primary: #c1ff00; /* Verde neon do logo */
-            --secondary: #0066ff; /* Azul do logo */
+            --primary: #c1ff00; 
+            --secondary: #0066ff;
             --dark: #0a0a0a;
-            --grey: #1c1c1c;
+            --grey: #1a1a1a;
             --white: #ffffff;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Roboto', sans-serif; background-color: var(--dark); color: var(--white); line-height: 1.6; overflow-x: hidden; }
-        h1, h2, h3, .brand { font-family: 'Orbitron', sans-serif; }
+        body { font-family: 'Roboto', sans-serif; background-color: var(--dark); color: var(--white); overflow-x: hidden; scroll-behavior: smooth; }
+        h1, h2, h3 { font-family: 'Orbitron', sans-serif; text-transform: uppercase; }
 
-        /* Header & Nav */
-        header { padding: 20px; text-align: center; background: rgba(0,0,0,0.8); position: sticky; top: 0; z-index: 1000; border-bottom: 2px solid var(--secondary); }
-        .logo { width: 180px; }
+        /* CABEÇALHO MODERNO (GLASSMORPHISM) */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 2000;
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s ease;
+        }
 
-        /* Hero Section */
-        .hero { height: 80vh; background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1558981403-c5f91cbba527?auto=format&fit=crop&q=80&w=1920') center/cover; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 20px; }
-        .hero h1 { font-size: 3rem; margin-bottom: 10px; color: var(--primary); text-transform: uppercase; }
-        .hero p { font-size: 1.2rem; max-width: 600px; margin-bottom: 30px; }
+        .logo-container {
+            background: #fff;
+            padding: 8px 15px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 102, 255, 0.3);
+            border: 2px solid var(--secondary);
+            transition: 0.3s;
+        }
 
-        /* Botão WhatsApp */
-        .btn-whatsapp { background-color: #25d366; color: white; padding: 15px 30px; border-radius: 50px; text-decoration: none; font-weight: bold; display: inline-flex; align-items: center; transition: 0.3s; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4); }
-        .btn-whatsapp:hover { transform: scale(1.05); filter: brightness(1.1); }
+        .logo-img { height: 45px; display: block; }
 
-        /* Financiamento Section */
-        .promo-box { background: var(--grey); padding: 40px 20px; text-align: center; border-top: 4px solid var(--primary); }
-        .price-tag { font-size: 2.5rem; color: var(--primary); font-weight: bold; display: block; }
+        nav ul { display: flex; list-style: none; gap: 25px; }
+        nav ul li a { 
+            color: #fff; text-decoration: none; font-family: 'Orbitron'; 
+            font-size: 0.8rem; letter-spacing: 1px; transition: 0.3s; opacity: 0.8;
+        }
+        nav ul li a:hover { color: var(--primary); opacity: 1; }
 
-        /* Modelos */
-        .models { padding: 80px 20px; max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-        .card { background: var(--grey); border-radius: 15px; overflow: hidden; transition: 0.3s; border: 1px solid #333; }
-        .card:hover { border-color: var(--secondary); }
-        .card img { width: 100%; height: 250px; object-fit: cover; }
-        .card-content { padding: 20px; }
-        .card h3 { color: var(--secondary); margin-bottom: 10px; }
+        .header-spacer { height: 90px; }
 
-        /* Rodapé */
-        footer { background: #000; padding: 40px 20px; text-align: center; border-top: 1px solid #333; }
-        .contact-info { margin-bottom: 30px; }
-        .credits { font-size: 0.9rem; color: #666; margin-top: 20px; }
-        .credits a { color: var(--primary); text-decoration: none; font-weight: bold; }
+        /* BOTÕES WHATSAPP */
+        .btn-whatsapp { 
+            background-color: #25d366; color: white; padding: 15px 25px; 
+            border-radius: 50px; text-decoration: none; font-weight: bold; 
+            display: inline-flex; align-items: center; gap: 10px; 
+            transition: 0.3s; border: none; cursor: pointer;
+        }
+        .btn-whatsapp:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4); }
 
-        @media (max-width: 768px) { .hero h1 { font-size: 2rem; } }
+        .btn-whatsapp-fixed {
+            position: fixed; bottom: 25px; right: 25px; z-index: 3000;
+            background: #25d366; width: 60px; height: 60px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 30px; color: white; box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            animation: pulse 2s infinite; text-decoration: none;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { transform: scale(1.1); box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+
+        /* HERO & CONTEÚDO */
+        .hero { 
+            height: 70vh; 
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('./imgs/nmax2025.webp') center/cover; 
+            display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 20px; 
+        }
+        .hero h1 { font-size: 3.5rem; color: var(--primary); margin-bottom: 15px; }
+
+        .about-section { padding: 80px 10%; display: flex; align-items: center; gap: 50px; flex-wrap: wrap; background: #050505; }
+        .about-image { flex: 1; min-width: 300px; border: 3px solid var(--secondary); border-radius: 20px; overflow: hidden; }
+        .about-image img { width: 100%; display: block; }
+
+        .models-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; padding: 80px 10%; }
+        .moto-card { background: #111; border-radius: 20px; overflow: hidden; border: 1px solid #333; }
+        .moto-card img { width: 100%; height: 300px; object-fit: cover; }
+        .moto-card-info { padding: 25px; text-align: center; }
+
+        .testimonials { padding: 80px 10%; background: var(--dark); text-align: center; }
+        .testimonial-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; margin-top: 40px; }
+        .test-card { background: var(--grey); padding: 30px; border-radius: 15px; border-left: 4px solid var(--secondary); text-align: left; }
+
+        .accessories-section { padding: 80px 20px; background: #050505; text-align: center; }
+        .swiper-slide { background: var(--grey); padding: 30px; border-radius: 15px; display: flex; flex-direction: column; align-items: center; }
+        .swiper-slide i { font-size: 3rem; color: var(--primary); margin-bottom: 20px; }
+
+        footer { padding: 60px 20px; background: #000; text-align: center; border-top: 1px solid #222; }
+        .credits { margin-top: 40px; color: #555; font-size: 0.8rem; }
+        .credits a { color: #888; text-decoration: none; }
+
+        @media (max-width: 768px) { nav { display: none; } header { justify-content: center; } .hero h1 { font-size: 2.2rem; } }
     </style>
 </head>
 <body>
 
-    <header>
-        <h2 class="brand">MASTER <span style="color:var(--secondary)">MOTORCYCLES</span></h2>
+    <header data-aos="fade-down">
+        <div class="logo-container">
+            <img src="./imgs/logo.jpeg" alt="Master Motorcycles" class="logo-img">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#sobre">Douglas</a></li>
+                <li><a href="#motos">Motos</a></li>
+                <li><a href="#acessorios">Acessórios</a></li>
+            </ul>
+        </nav>
+        <a href="https://wa.me/447517596540" target="_blank" class="btn-whatsapp">OBTER ORÇAMENTO</a>
     </header>
 
+    <div class="header-spacer" id="home"></div>
+
+    <a href="https://wa.me/447517596540" class="btn-whatsapp-fixed" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
     <section class="hero">
-        <h1 data-aos="fade-down">Sua Moto Nova em Londres</h1>
-        <p data-aos="fade-up">Aproveite a facilidade de financiamento sem burocracia para as novas NMAX e PCX 2025.</p>
-        <a href="https://wa.me/447517596540" target="_blank" class="btn-whatsapp" data-aos="zoom-in">
-            FALE CONOSCO NO WHATSAPP
-        </a>
+        <h1 data-aos="zoom-out">Master Motorcycles</h1>
+        <p data-aos="fade-up">Sua NMAX ou PCX 2025 está aqui. Parcelamento facilitado em Londres.</p>
     </section>
 
-    <section class="promo-box">
-        <div data-aos="flip-up">
-            <h2>FINANCIAMENTO DISPONÍVEL</h2>
-            <p>Entrada de apenas <span class="price-tag">£850</span></p>
-            <p>+ 21 semanas de £200</p>
+    <section id="sobre" class="about-section">
+        <div class="about-image" data-aos="fade-right">
+            <img src="./imgs/douglas.jpeg" alt="Douglas">
+        </div>
+        <div class="about-content" data-aos="fade-left">
+            <h2>Douglas - Master Motorcycles</h2>
+            <p>Mais de 10 anos transformando o sonho da moto própria em realidade para brasileiros no Reino Unido.</p>
+            <p>Atendimento honesto, café na loja e a garantia de quem entende de mecânica e mercado.</p>
         </div>
     </section>
 
-    <div class="models">
-        <div class="card" data-aos="fade-right">
-            <img src="https://images.unsplash.com/photo-1622185135505-2d795003994a?q=80&w=800" alt="Yamaha NMAX 2025">
-            <div class="card-content">
-                <h3>YAMAHA NMAX 2025</h3>
-                <p>Zero km, com acessórios inclusos: Rack, Top Box 65L, Hotgrips e GPS Live.</p>
-                <br>
-                <a href="https://wa.me/447517596540" class="btn-whatsapp">Tenho Interesse</a>
+    <section id="motos" class="models-grid">
+        <div class="moto-card" data-aos="fade-up">
+            <img src="./imgs/nmax2025.webp" alt="NMAX 2025">
+            <div class="moto-card-info">
+                <h3>NMAX 2025</h3>
+                <p>Entrada £850 + 21x £200</p><br>
+                <a href="https://wa.me/447517596540" class="btn-whatsapp" style="width:100%; justify-content:center;">OBTER ORÇAMENTO</a>
             </div>
         </div>
-        <div class="card" data-aos="fade-left">
-            <img src="https://images.unsplash.com/photo-1599819811279-d5ad9cccf838?q=80&w=800" alt="Honda PCX 2025">
-            <div class="card-content">
-                <h3>HONDA PCX 2025</h3>
-                <p>Economia e tecnologia para o seu dia a dia. Aceitamos sua moto como entrada!</p>
-                <br>
-                <a href="https://wa.me/447517596540" class="btn-whatsapp">Tenho Interesse</a>
+        <div class="moto-card" data-aos="fade-up" data-aos-delay="200">
+            <img src="./imgs/pcx2025.jpeg" alt="PCX 2025">
+            <div class="moto-card-info">
+                <h3>PCX 2025</h3>
+                <p>Entrada £850 + 21x £200</p><br>
+                <a href="https://wa.me/447517596540" class="btn-whatsapp" style="width:100%; justify-content:center;">OBTER ORÇAMENTO</a>
             </div>
         </div>
-    </div>
+    </section>
+
+    <section class="testimonials">
+        <h2>O que dizem nossos clientes</h2>
+        <div class="testimonial-grid">
+            <div class="test-card">
+                <i class="fas fa-quote-left"></i>
+                <p>"Douglas é nota 10. Comprei minha moto e o suporte foi total. Honestidade rara de encontrar."</p>
+                <h4>Leo Gomes</h4>
+            </div>
+            <div class="test-card">
+                <i class="fas fa-quote-left"></i>
+                <p>"Facilidade no pagamento e atendimento nota mil. Valeu cada centavo."</p>
+                <h4>Clementino</h4>
+            </div>
+        </div>
+    </section>
+
+    <section id="acessorios" class="accessories-section">
+        <h2>Acessórios Premium</h2>
+        <div class="swiper mySwiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide"><i class="fas fa-box"></i><h3>Top Box 65LT</h3></div>
+                <div class="swiper-slide"><i class="fas fa-fire"></i><h3>Hot Grips</h3></div>
+                <div class="swiper-slide"><i class="fas fa-map-marker-alt"></i><h3>GPS Live</h3></div>
+                <div class="swiper-slide"><i class="fas fa-mobile-alt"></i><h3>Suporte Celular</h3></div>
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+    </section>
 
     <footer>
-        <div class="contact-info">
-            <p>📍 836–840 Hertford Rd, Enfield EN3 6UE</p>
-            <p>📞 +44 7517 596540</p>
-            <p>☕ Venha tomar um café conosco e conhecer sua nova moto!</p>
-        </div>
-        
-        <hr style="border: 0; border-top: 1px solid #222;">
-        
+        <p>836–840 Hertford Rd, Enfield EN3 6UE | 📞 +44 7517 596540</p>
         <p class="credits">
-            &copy; 2025 Master Motorcycles. Todos os direitos reservados. 
-            | Criado por <a href="https://instagram.com/erikfritas" target="_blank">Erik Freitas</a>
+            &copy; 2025 Master Motorcycles. Criado por <a href="https://instagram.com/erikfritas" target="_blank">Erik Freitas @erikfritas</a>
         </p>
     </footer>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
         AOS.init({ duration: 1000, once: true });
+        new Swiper(".mySwiper", {
+            slidesPerView: 1, spaceBetween: 20, loop: true,
+            autoplay: { delay: 3000 },
+            pagination: { el: ".swiper-pagination", clickable: true },
+            breakpoints: { 640: { slidesPerView: 2 }, 1024: { slidesPerView: 4 } }
+        });
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            header.style.background = window.scrollY > 50 ? 'rgba(0, 0, 0, 0.95)' : 'rgba(10, 10, 10, 0.8)';
+        });
     </script>
 </body>
 </html>
