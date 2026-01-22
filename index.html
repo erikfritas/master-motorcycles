@@ -57,16 +57,38 @@
         }
 
         /* SECTIONS */
-        section { padding: 60px 10%; }
+        section { padding: 80px 10%; }
         .btn-quote { 
             background: var(--primary); color: #000; padding: 15px 35px; border-radius: 50px; 
             text-decoration: none; font-weight: bold; font-family: 'Orbitron'; transition: 0.3s; display: inline-block;
         }
         .btn-quote:hover { transform: scale(1.05); box-shadow: 0 0 20px rgba(193, 255, 0, 0.4); }
         
-        .about-section { display: flex; align-items: center; gap: 40px; flex-wrap: wrap; background: #050505; }
-        .about-image img { width: 100%; max-width: 400px; border-radius: 20px; border: 2px solid var(--secondary); }
+        /* SOBRE MIM - AJUSTE DESKTOP LADO A LADO */
+        .about-section { 
+            display: flex; 
+            align-items: center; 
+            justify-content: center;
+            gap: 60px; 
+            flex-wrap: nowrap; /* Garante o lado a lado no desktop */
+            background: #050505; 
+        }
+        .about-image {
+            flex: 0 0 400px; /* Largura fixa da imagem no desktop */
+        }
+        .about-image img { 
+            width: 100%; 
+            border-radius: 20px; 
+            border: 2px solid var(--secondary); 
+            box-shadow: 0 10px 30px rgba(0, 102, 255, 0.2);
+        }
+        .about-content { 
+            flex: 1; 
+        }
+        .about-content h2 { color: var(--primary); margin-bottom: 20px; font-size: 2.5rem; }
+        .about-content p { font-size: 1.1rem; line-height: 1.8; color: #ccc; margin-bottom: 15px; }
 
+        /* MOTOS */
         .models-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
         .moto-card { background: var(--grey); border-radius: 20px; overflow: hidden; border: 1px solid #333; text-align: center; padding-bottom: 25px;}
         .moto-card img { width: 100%; height: 280px; object-fit: cover; }
@@ -77,7 +99,7 @@
         .test-card { background: var(--grey); padding: 30px; border-radius: 15px; border-left: 4px solid var(--secondary); min-height: 200px; }
         .test-card i { color: var(--primary); margin-bottom: 10px; font-size: 1.2rem; }
 
-        /* UPGRADES (ACCESSORIES) */
+        /* UPGRADES */
         .accessories-section { background: #050505; }
         .swiper { padding: 40px 0; }
         .swiper-slide { background: var(--grey); padding: 30px; border-radius: 15px; text-align: center; }
@@ -90,10 +112,24 @@
             box-shadow: 0 4px 15px rgba(0,0,0,0.5); animation: pulse 2s infinite; text-decoration: none;
         }
 
-        @keyframes pulse { 0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); } 70% { transform: scale(1.1); box-shadow: 0 0 0 10px rgba(37, 211, 102, 0); } 100% { transform: scale(1); } }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes pulse { 0% { transform: scale(1); } 70% { transform: scale(1.1); } 100% { transform: scale(1); } }
 
-        @media (max-width: 768px) { .nav-desktop { display: none; } .menu-toggle { display: block; } .about-section { text-align: center; justify-content: center; } }
+        /* RESPONSIVIDADE MOBILE */
+        @media (max-width: 992px) {
+            .about-section { 
+                flex-wrap: wrap; /* Empilha no mobile */
+                text-align: center; 
+                gap: 30px;
+            }
+            .about-image { flex: 0 0 100%; max-width: 350px; }
+            .about-content h2 { font-size: 2rem; }
+        }
+
+        @media (max-width: 768px) { 
+            .nav-desktop { display: none; } 
+            .menu-toggle { display: block; } 
+            section { padding: 60px 5%; }
+        }
     </style>
 </head>
 <body>
@@ -131,10 +167,14 @@
     </section>
 
     <section id="sobre" class="about-section">
-        <div class="about-image" data-aos="fade-right"><img src="./imgs/douglas.jpeg" alt="Douglas"></div>
+        <div class="about-image" data-aos="fade-right">
+            <img src="./imgs/douglas.jpeg" alt="Douglas - Especialista em Motos">
+        </div>
         <div class="about-content" data-aos="fade-left">
             <h2>Douglas</h2>
-            <p>Com mais de 10 anos de experiência em motos, ofereço um atendimento exclusivo com café na loja e as melhores condições de financiamento para a nossa comunidade em Londres.</p>
+            <p>Com mais de <strong>10 anos de experiência</strong> no ramo de motocicletas, minha missão é oferecer muito mais do que apenas uma venda. Na Master Motorcycles, focamos na confiança e na satisfação da comunidade brasileira em Londres.</p>
+            <p>Seja para trabalho ou lazer, eu ajudo você a conquistar sua NMAX ou PCX 2025 com o melhor plano de parcelamento, atendimento pessoal e, claro, aquele café especial na nossa loja.</p>
+            <a href="https://wa.me/447517596540" target="_blank" class="btn-quote" style="background:none; border: 1px solid var(--primary); color: var(--primary);">Falar com Douglas</a>
         </div>
     </section>
 
@@ -167,17 +207,17 @@
             </div>
             <div class="test-card">
                 <i class="fas fa-star"></i>
-                <p>"A melhor loja de Londres. Atendimento e café nota 10. Recomendo a todos os brasileiros."</p>
+                <p>"A melhor loja de Londres. Atendimento e café nota 10. Recomendo a todos."</p>
                 <h4>- Clementino</h4>
             </div>
             <div class="test-card">
                 <i class="fas fa-star"></i>
-                <p>"Minha moto veio perfeita e com todos os acessórios. Douglas é muito honesto e profissional."</p>
+                <p>"Douglas é muito honesto e profissional. Minha moto veio perfeita."</p>
                 <h4>- Bruno Giovani</h4>
             </div>
             <div class="test-card">
                 <i class="fas fa-star"></i>
-                <p>"Fui muito bem atendido. O processo de financiamento foi transparente e rápido."</p>
+                <p>"O processo foi rápido e transparente. Nota mil para a Master Motorcycles."</p>
                 <h4>- Erik Freitas</h4>
             </div>
         </div>
@@ -209,14 +249,12 @@
     <script>
         AOS.init({ duration: 1000, once: true });
         
-        // Carrossel de Upgrades
         new Swiper(".mySwiper", {
             slidesPerView: 1, spaceBetween: 20, loop: true, autoplay: { delay: 3000 },
             pagination: { el: ".swiper-pagination", clickable: true },
             breakpoints: { 640: { slidesPerView: 2 }, 1024: { slidesPerView: 4 } }
         });
 
-        // Menu Mobile
         const openBtn = document.getElementById('openMenu'), 
               closeBtn = document.getElementById('closeMenu'), 
               menu = document.getElementById('mobileMenu');
