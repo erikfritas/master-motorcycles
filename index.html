@@ -23,54 +23,59 @@
         body { font-family: 'Roboto', sans-serif; background-color: var(--dark); color: var(--white); overflow-x: hidden; scroll-behavior: smooth; }
         h1, h2, h3 { font-family: 'Orbitron', sans-serif; text-transform: uppercase; }
 
-        /* CABEÇALHO MODERNO (GLASSMORPHISM) */
+        /* CABEÇALHO LIMPO */
         header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 2000;
-            padding: 15px 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: rgba(10, 10, 10, 0.8);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
+            position: fixed; top: 0; width: 100%; z-index: 2000;
+            padding: 15px 5%; display: flex; justify-content: space-between; align-items: center;
+            background: rgba(10, 10, 10, 0.8); backdrop-filter: blur(15px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.4s ease;
         }
 
         .logo-container {
-            background: #fff;
-            padding: 8px 15px;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0, 102, 255, 0.3);
-            border: 2px solid var(--secondary);
-            transition: 0.3s;
+            background: #fff; padding: 5px 12px; border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 102, 255, 0.2); border: 2px solid var(--secondary);
         }
+        .logo-img { height: 40px; display: block; }
 
-        .logo-img { height: 45px; display: block; }
-
-        nav ul { display: flex; list-style: none; gap: 25px; }
-        nav ul li a { 
+        /* MENU DESKTOP */
+        .nav-desktop { display: flex; list-style: none; gap: 30px; }
+        .nav-desktop a { 
             color: #fff; text-decoration: none; font-family: 'Orbitron'; 
-            font-size: 0.8rem; letter-spacing: 1px; transition: 0.3s; opacity: 0.8;
+            font-size: 0.8rem; letter-spacing: 1px; transition: 0.3s; opacity: 0.7;
         }
-        nav ul li a:hover { color: var(--primary); opacity: 1; }
+        .nav-desktop a:hover { color: var(--primary); opacity: 1; }
 
-        .header-spacer { height: 90px; }
+        /* MENU MOBILE GRID */
+        .menu-toggle { display: none; font-size: 1.5rem; color: var(--primary); cursor: pointer; z-index: 3001; }
 
-        /* BOTÕES WHATSAPP */
-        .btn-whatsapp { 
-            background-color: #25d366; color: white; padding: 15px 25px; 
-            border-radius: 50px; text-decoration: none; font-weight: bold; 
-            display: inline-flex; align-items: center; gap: 10px; 
-            transition: 0.3s; border: none; cursor: pointer;
+        .mobile-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--dark); z-index: 3000;
+            display: none; flex-direction: column; justify-content: center; align-items: center;
+            padding: 40px;
         }
-        .btn-whatsapp:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4); }
+        .mobile-overlay.active { display: flex; animation: fadeIn 0.4s ease; }
 
+        .mobile-grid {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 20px; width: 100%; max-width: 400px;
+        }
+        .mobile-item {
+            background: var(--grey); padding: 30px 20px; border-radius: 15px;
+            text-align: center; border: 1px solid #333; text-decoration: none;
+            transition: 0.3s; color: var(--white);
+        }
+        .mobile-item i { font-size: 2rem; color: var(--secondary); margin-bottom: 10px; display: block; }
+        .mobile-item span { font-family: 'Orbitron'; font-size: 0.7rem; display: block; }
+        .mobile-item:hover { border-color: var(--primary); background: #222; }
+
+        .mobile-credits {
+            margin-top: 50px; text-align: center; color: #555; font-size: 0.8rem;
+        }
+        .mobile-credits a { color: var(--primary); text-decoration: none; }
+
+        /* BOTÃO WHATSAPP FIXO */
         .btn-whatsapp-fixed {
-            position: fixed; bottom: 25px; right: 25px; z-index: 3000;
+            position: fixed; bottom: 25px; right: 25px; z-index: 2500;
             background: #25d366; width: 60px; height: 60px; border-radius: 50%;
             display: flex; align-items: center; justify-content: center;
             font-size: 30px; color: white; box-shadow: 0 4px 15px rgba(0,0,0,0.5);
@@ -83,54 +88,89 @@
             100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
         }
 
-        /* HERO & CONTEÚDO */
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* HERO & CONTENT */
+        .header-spacer { height: 80px; }
         .hero { 
-            height: 70vh; 
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('./imgs/nmax2025.webp') center/cover; 
+            height: 60vh; background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('./imgs/nmax2025.webp') center/cover; 
             display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 20px; 
         }
-        .hero h1 { font-size: 3.5rem; color: var(--primary); margin-bottom: 15px; }
+        .btn-quote { 
+            background: var(--primary); color: #000; padding: 15px 40px; border-radius: 50px; 
+            text-decoration: none; font-weight: bold; font-family: 'Orbitron'; margin-top: 20px; transition: 0.3s;
+        }
+        .btn-quote:hover { transform: scale(1.05); box-shadow: 0 0 20px rgba(193, 255, 0, 0.4); }
 
-        .about-section { padding: 80px 10%; display: flex; align-items: center; gap: 50px; flex-wrap: wrap; background: #050505; }
-        .about-image { flex: 1; min-width: 300px; border: 3px solid var(--secondary); border-radius: 20px; overflow: hidden; }
+        @media (max-width: 768px) {
+            .nav-desktop { display: none; }
+            .menu-toggle { display: block; }
+            .hero h1 { font-size: 2rem; }
+        }
+
+        /* Reutilizando estilos de seções anteriores */
+        .about-section { padding: 60px 10%; display: flex; align-items: center; gap: 40px; flex-wrap: wrap; }
+        .about-image { flex: 1; min-width: 280px; border-radius: 20px; overflow: hidden; border: 2px solid var(--secondary); }
         .about-image img { width: 100%; display: block; }
-
-        .models-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; padding: 80px 10%; }
-        .moto-card { background: #111; border-radius: 20px; overflow: hidden; border: 1px solid #333; }
-        .moto-card img { width: 100%; height: 300px; object-fit: cover; }
-        .moto-card-info { padding: 25px; text-align: center; }
-
-        .testimonials { padding: 80px 10%; background: var(--dark); text-align: center; }
-        .testimonial-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; margin-top: 40px; }
-        .test-card { background: var(--grey); padding: 30px; border-radius: 15px; border-left: 4px solid var(--secondary); text-align: left; }
-
-        .accessories-section { padding: 80px 20px; background: #050505; text-align: center; }
-        .swiper-slide { background: var(--grey); padding: 30px; border-radius: 15px; display: flex; flex-direction: column; align-items: center; }
-        .swiper-slide i { font-size: 3rem; color: var(--primary); margin-bottom: 20px; }
-
-        footer { padding: 60px 20px; background: #000; text-align: center; border-top: 1px solid #222; }
-        .credits { margin-top: 40px; color: #555; font-size: 0.8rem; }
-        .credits a { color: #888; text-decoration: none; }
-
-        @media (max-width: 768px) { nav { display: none; } header { justify-content: center; } .hero h1 { font-size: 2.2rem; } }
+        .about-content { flex: 2; min-width: 280px; }
+        .models-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; padding: 60px 10%; }
+        .moto-card { background: var(--grey); border-radius: 20px; overflow: hidden; border: 1px solid #333; transition: 0.3s; }
+        .moto-card:hover { border-color: var(--secondary); }
+        .moto-card img { width: 100%; height: 250px; object-fit: cover; }
+        .moto-card-info { padding: 20px; text-align: center; }
+        .testimonials { padding: 60px 10%; text-align: center; background: #050505; }
+        .testimonial-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 30px; }
+        .test-card { background: var(--dark); padding: 25px; border-radius: 15px; border-left: 4px solid var(--secondary); text-align: left; }
     </style>
 </head>
 <body>
 
-    <header data-aos="fade-down">
+    <header>
         <div class="logo-container">
             <img src="./imgs/logo.jpeg" alt="Master Motorcycles" class="logo-img">
         </div>
-        <nav>
-            <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#sobre">Douglas</a></li>
-                <li><a href="#motos">Motos</a></li>
-                <li><a href="#acessorios">Acessórios</a></li>
-            </ul>
-        </nav>
-        <a href="https://wa.me/447517596540" target="_blank" class="btn-whatsapp">OBTER ORÇAMENTO</a>
+        
+        <ul class="nav-desktop">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#sobre">Douglas</a></li>
+            <li><a href="#motos">Motos</a></li>
+            <li><a href="#acessorios">Acessórios</a></li>
+        </ul>
+
+        <div class="menu-toggle" id="openMenu">
+            <i class="fas fa-bars"></i>
+        </div>
     </header>
+
+    <div class="mobile-overlay" id="mobileMenu">
+        <div style="position: absolute; top: 25px; right: 5%; font-size: 2rem; color: var(--primary);" id="closeMenu">
+            <i class="fas fa-times"></i>
+        </div>
+        
+        <div class="mobile-grid">
+            <a href="#home" class="mobile-item">
+                <i class="fas fa-home"></i>
+                <span>HOME</span>
+            </a>
+            <a href="#sobre" class="mobile-item">
+                <i class="fas fa-user-tie"></i>
+                <span>DOUGLAS</span>
+            </a>
+            <a href="#motos" class="mobile-item">
+                <i class="fas fa-motorcycle"></i>
+                <span>MOTOS</span>
+            </a>
+            <a href="#acessorios" class="mobile-item">
+                <i class="fas fa-tools"></i>
+                <span>UPGRADES</span>
+            </a>
+        </div>
+
+        <div class="mobile-credits">
+            Criado por <br>
+            <a href="https://instagram.com/erikfritas" target="_blank"><strong>Erik Freitas (@erikfritas)</strong></a>
+        </div>
+    </div>
 
     <div class="header-spacer" id="home"></div>
 
@@ -139,8 +179,9 @@
     </a>
 
     <section class="hero">
-        <h1 data-aos="zoom-out">Master Motorcycles</h1>
-        <p data-aos="fade-up">Sua NMAX ou PCX 2025 está aqui. Parcelamento facilitado em Londres.</p>
+        <h1 data-aos="zoom-in">MASTER MOTORCYCLES</h1>
+        <p data-aos="fade-up">Especialista em NMAX e PCX 2025 em Londres.</p>
+        <a href="https://wa.me/447517596540" target="_blank" class="btn-quote" data-aos="fade-up">OBTER ORÇAMENTO</a>
     </section>
 
     <section id="sobre" class="about-section">
@@ -148,80 +189,66 @@
             <img src="./imgs/douglas.jpeg" alt="Douglas">
         </div>
         <div class="about-content" data-aos="fade-left">
-            <h2>Douglas - Master Motorcycles</h2>
-            <p>Mais de 10 anos transformando o sonho da moto própria em realidade para brasileiros no Reino Unido.</p>
-            <p>Atendimento honesto, café na loja e a garantia de quem entende de mecânica e mercado.</p>
+            <h2>Douglas</h2>
+            <p>10 anos de experiência no mercado de motos, garantindo o melhor negócio para a comunidade brasileira.</p>
         </div>
     </section>
 
     <section id="motos" class="models-grid">
         <div class="moto-card" data-aos="fade-up">
-            <img src="./imgs/nmax2025.webp" alt="NMAX 2025">
+            <img src="./imgs/nmax2025.webp" alt="NMAX">
             <div class="moto-card-info">
-                <h3>NMAX 2025</h3>
-                <p>Entrada £850 + 21x £200</p><br>
-                <a href="https://wa.me/447517596540" class="btn-whatsapp" style="width:100%; justify-content:center;">OBTER ORÇAMENTO</a>
+                <h3>YAMAHA NMAX 2025</h3>
+                <p>Entrada £850</p>
+                <a href="https://wa.me/447517596540" class="btn-quote" style="display:block; font-size: 0.8rem;">OBTER ORÇAMENTO</a>
             </div>
         </div>
         <div class="moto-card" data-aos="fade-up" data-aos-delay="200">
-            <img src="./imgs/pcx2025.jpeg" alt="PCX 2025">
+            <img src="./imgs/pcx2025.jpeg" alt="PCX">
             <div class="moto-card-info">
-                <h3>PCX 2025</h3>
-                <p>Entrada £850 + 21x £200</p><br>
-                <a href="https://wa.me/447517596540" class="btn-whatsapp" style="width:100%; justify-content:center;">OBTER ORÇAMENTO</a>
+                <h3>HONDA PCX 2025</h3>
+                <p>Entrada £850</p>
+                <a href="https://wa.me/447517596540" class="btn-quote" style="display:block; font-size: 0.8rem;">OBTER ORÇAMENTO</a>
             </div>
         </div>
     </section>
 
     <section class="testimonials">
-        <h2>O que dizem nossos clientes</h2>
+        <h2>Feedback dos Clientes</h2>
         <div class="testimonial-grid">
             <div class="test-card">
-                <i class="fas fa-quote-left"></i>
-                <p>"Douglas é nota 10. Comprei minha moto e o suporte foi total. Honestidade rara de encontrar."</p>
-                <h4>Leo Gomes</h4>
+                <p>"Douglas resolveu tudo rápido. O café é ótimo e a moto veio perfeita."</p>
+                <h4>- Leo Gomes</h4>
             </div>
             <div class="test-card">
-                <i class="fas fa-quote-left"></i>
-                <p>"Facilidade no pagamento e atendimento nota mil. Valeu cada centavo."</p>
-                <h4>Clementino</h4>
+                <p>"Processo transparente e parcelamento que cabe no bolso."</p>
+                <h4>- Clementino</h4>
             </div>
         </div>
     </section>
 
-    <section id="acessorios" class="accessories-section">
-        <h2>Acessórios Premium</h2>
-        <div class="swiper mySwiper">
-            <div class="swiper-wrapper">
-                <div class="swiper-slide"><i class="fas fa-box"></i><h3>Top Box 65LT</h3></div>
-                <div class="swiper-slide"><i class="fas fa-fire"></i><h3>Hot Grips</h3></div>
-                <div class="swiper-slide"><i class="fas fa-map-marker-alt"></i><h3>GPS Live</h3></div>
-                <div class="swiper-slide"><i class="fas fa-mobile-alt"></i><h3>Suporte Celular</h3></div>
-            </div>
-            <div class="swiper-pagination"></div>
-        </div>
-    </section>
-
-    <footer>
-        <p>836–840 Hertford Rd, Enfield EN3 6UE | 📞 +44 7517 596540</p>
-        <p class="credits">
-            &copy; 2025 Master Motorcycles. Criado por <a href="https://instagram.com/erikfritas" target="_blank">Erik Freitas @erikfritas</a>
+    <footer style="padding: 40px; text-align: center; border-top: 1px solid #222;">
+        <p>836–840 Hertford Rd, Enfield EN3 6UE</p>
+        <p style="color: #555; font-size: 0.8rem; margin-top: 15px;">
+            &copy; 2025 Master Motorcycles | Criado por <a href="https://instagram.com/erikfritas" style="color: #888;">Erik Freitas</a>
         </p>
     </footer>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
         AOS.init({ duration: 1000, once: true });
-        new Swiper(".mySwiper", {
-            slidesPerView: 1, spaceBetween: 20, loop: true,
-            autoplay: { delay: 3000 },
-            pagination: { el: ".swiper-pagination", clickable: true },
-            breakpoints: { 640: { slidesPerView: 2 }, 1024: { slidesPerView: 4 } }
-        });
-        window.addEventListener('scroll', function() {
-            const header = document.querySelector('header');
-            header.style.background = window.scrollY > 50 ? 'rgba(0, 0, 0, 0.95)' : 'rgba(10, 10, 10, 0.8)';
+
+        // Lógica do Menu Mobile
+        const openBtn = document.getElementById('openMenu');
+        const closeBtn = document.getElementById('closeMenu');
+        const menu = document.getElementById('mobileMenu');
+        const links = document.querySelectorAll('.mobile-item');
+
+        openBtn.addEventListener('click', () => menu.classList.add('active'));
+        closeBtn.addEventListener('click', () => menu.classList.remove('active'));
+        
+        links.forEach(link => {
+            link.addEventListener('click', () => menu.classList.remove('active'));
         });
     </script>
 </body>
