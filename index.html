@@ -3,205 +3,117 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Master Motorcycles | NMAX & PCX 2025</title>
-    
+    <title>Master Motorcycles | Londres - NMAX & PCX 2025</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-
     <style>
         :root {
-            --primary: #c1ff00; 
-            --secondary: #0066ff;
+            --primary: #c1ff00; /* Verde neon do logo */
+            --secondary: #0066ff; /* Azul do logo */
             --dark: #0a0a0a;
-            --grey: #1a1a1a;
+            --grey: #1c1c1c;
             --white: #ffffff;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Roboto', sans-serif; background-color: var(--dark); color: var(--white); overflow-x: hidden; }
-        h1, h2, h3 { font-family: 'Orbitron', sans-serif; text-transform: uppercase; }
+        body { font-family: 'Roboto', sans-serif; background-color: var(--dark); color: var(--white); line-height: 1.6; overflow-x: hidden; }
+        h1, h2, h3, .brand { font-family: 'Orbitron', sans-serif; }
 
-        /* Header */
-        header { padding: 25px; text-align: center; background: rgba(0,0,0,0.9); border-bottom: 2px solid var(--secondary); position: sticky; top: 0; z-index: 1000; }
-        .logo-text { font-size: 1.5rem; font-weight: bold; letter-spacing: 2px; }
+        /* Header & Nav */
+        header { padding: 20px; text-align: center; background: rgba(0,0,0,0.8); position: sticky; top: 0; z-index: 1000; border-bottom: 2px solid var(--secondary); }
+        .logo { width: 180px; }
 
-        /* Hero */
-        .hero { height: 70vh; background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('./imgs/nmax2025.webp') center/cover; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 20px; }
-        .hero h1 { font-size: 3.5rem; color: var(--primary); margin-bottom: 15px; text-shadow: 2px 2px 10px rgba(0,0,0,0.5); }
-        
-        /* Botão WhatsApp Corrigido */
-        .btn-whatsapp { 
-            background-color: #25d366; 
-            color: white; 
-            padding: 18px 35px; 
-            border-radius: 50px; 
-            text-decoration: none; 
-            font-weight: bold; 
-            display: inline-flex; 
-            align-items: center; 
-            gap: 10px;
-            transition: all 0.3s ease-in-out;
-            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
-            border: none;
-            cursor: pointer;
-            z-index: 10;
-        }
-        .btn-whatsapp:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5); }
-        .btn-whatsapp i { font-size: 1.5rem; }
+        /* Hero Section */
+        .hero { height: 80vh; background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1558981403-c5f91cbba527?auto=format&fit=crop&q=80&w=1920') center/cover; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 20px; }
+        .hero h1 { font-size: 3rem; margin-bottom: 10px; color: var(--primary); text-transform: uppercase; }
+        .hero p { font-size: 1.2rem; max-width: 600px; margin-bottom: 30px; }
 
-        /* Section Financiamento */
-        .finance { background: var(--grey); padding: 60px 20px; text-align: center; }
-        .price-highlight { font-size: 3rem; color: var(--primary); display: block; margin: 10px 0; }
+        /* Botão WhatsApp */
+        .btn-whatsapp { background-color: #25d366; color: white; padding: 15px 30px; border-radius: 50px; text-decoration: none; font-weight: bold; display: inline-flex; align-items: center; transition: 0.3s; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4); }
+        .btn-whatsapp:hover { transform: scale(1.05); filter: brightness(1.1); }
 
-        /* Grid de Motos */
-        .models-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; padding: 80px 10% ; }
-        .moto-card { background: #111; border-radius: 20px; overflow: hidden; border: 1px solid #333; transition: 0.4s; }
-        .moto-card:hover { border-color: var(--secondary); transform: translateY(-10px); }
-        .moto-card img { width: 100%; height: 300px; object-fit: cover; }
-        .moto-card-info { padding: 25px; }
-        .moto-card-info h3 { margin-bottom: 15px; color: var(--secondary); }
+        /* Financiamento Section */
+        .promo-box { background: var(--grey); padding: 40px 20px; text-align: center; border-top: 4px solid var(--primary); }
+        .price-tag { font-size: 2.5rem; color: var(--primary); font-weight: bold; display: block; }
 
-        /* Carrossel de Acessórios */
-        .accessories-section { padding: 80px 20px; background: #050505; }
-        .accessories-section h2 { text-align: center; margin-bottom: 50px; }
-        .swiper { width: 100%; padding-bottom: 50px; }
-        .swiper-slide { background: var(--grey); padding: 30px; border-radius: 15px; text-align: center; height: auto; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-        .swiper-slide i { font-size: 3rem; color: var(--primary); margin-bottom: 20px; }
-        .swiper-pagination-bullet { background: var(--primary); }
+        /* Modelos */
+        .models { padding: 80px 20px; max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .card { background: var(--grey); border-radius: 15px; overflow: hidden; transition: 0.3s; border: 1px solid #333; }
+        .card:hover { border-color: var(--secondary); }
+        .card img { width: 100%; height: 250px; object-fit: cover; }
+        .card-content { padding: 20px; }
+        .card h3 { color: var(--secondary); margin-bottom: 10px; }
 
-        /* Footer */
-        footer { padding: 60px 20px; background: #000; text-align: center; border-top: 1px solid var(--grey); }
-        .footer-links a { color: var(--white); margin: 0 15px; font-size: 1.2rem; transition: 0.3s; }
-        .footer-links a:hover { color: var(--primary); }
-        .credits { margin-top: 40px; color: #555; font-size: 0.8rem; }
-        .credits a { color: #888; text-decoration: none; border-bottom: 1px dotted #444; }
+        /* Rodapé */
+        footer { background: #000; padding: 40px 20px; text-align: center; border-top: 1px solid #333; }
+        .contact-info { margin-bottom: 30px; }
+        .credits { font-size: 0.9rem; color: #666; margin-top: 20px; }
+        .credits a { color: var(--primary); text-decoration: none; font-weight: bold; }
 
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 2.2rem; }
-            .models-grid { padding: 40px 20px; }
-        }
+        @media (max-width: 768px) { .hero h1 { font-size: 2rem; } }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="logo-text">MASTER <span style="color:var(--secondary)">MOTORCYCLES</span></div>
+        <h2 class="brand">MASTER <span style="color:var(--secondary)">MOTORCYCLES</span></h2>
     </header>
 
     <section class="hero">
-        <h1 data-aos="zoom-out">NMAX & PCX 2025</h1>
-        <p data-aos="fade-up" data-aos-delay="200">As melhores scooters de Londres com as melhores condições do mercado.</p>
-        <div style="margin-top: 30px;" data-aos="fade-up" data-aos-delay="400">
-            <a href="https://wa.me/447517596540" target="_blank" class="btn-whatsapp">
-                <i class="fab fa-whatsapp"></i> ATENDIMENTO VIA WHATSAPP
-            </a>
+        <h1 data-aos="fade-down">Sua Moto Nova em Londres</h1>
+        <p data-aos="fade-up">Aproveite a facilidade de financiamento sem burocracia para as novas NMAX e PCX 2025.</p>
+        <a href="https://wa.me/447517596540" target="_blank" class="btn-whatsapp" data-aos="zoom-in">
+            FALE CONOSCO NO WHATSAPP
+        </a>
+    </section>
+
+    <section class="promo-box">
+        <div data-aos="flip-up">
+            <h2>FINANCIAMENTO DISPONÍVEL</h2>
+            <p>Entrada de apenas <span class="price-tag">£850</span></p>
+            <p>+ 21 semanas de £200</p>
         </div>
     </section>
 
-    <section class="finance" data-aos="fade-up">
-        <h2>Financiamento sem Burocracia</h2>
-        <p>Leve sua moto hoje mesmo com</p>
-        <span class="price-highlight">ENTRADA £850</span>
-        <p>Restante em até <strong>21 parcelas de £200</strong></p>
-    </section>
-
-    <section class="models-grid">
-        <div class="moto-card" data-aos="fade-right">
-            <img src="./imgs/nmax2025.webp" alt="Yamaha NMAX 2025">
-            <div class="moto-card-info">
-                <h3>Yamaha NMAX 2025</h3>
-                <p><i class="fas fa-check-circle" style="color:var(--primary)"></i> Zero Km</p>
-                <p><i class="fas fa-check-circle" style="color:var(--primary)"></i> Tecnologia ABS</p>
-                <p><i class="fas fa-check-circle" style="color:var(--primary)"></i> Ideal para Delivery e lazer</p>
+    <div class="models">
+        <div class="card" data-aos="fade-right">
+            <img src="https://images.unsplash.com/photo-1622185135505-2d795003994a?q=80&w=800" alt="Yamaha NMAX 2025">
+            <div class="card-content">
+                <h3>YAMAHA NMAX 2025</h3>
+                <p>Zero km, com acessórios inclusos: Rack, Top Box 65L, Hotgrips e GPS Live.</p>
                 <br>
-                <a href="https://wa.me/447517596540" class="btn-whatsapp" style="width: 100%; justify-content: center;">Quero esta</a>
+                <a href="https://wa.me/447517596540" class="btn-whatsapp">Tenho Interesse</a>
             </div>
         </div>
-
-        <div class="moto-card" data-aos="fade-left">
-            <img src="./imgs/pcx2025.jpeg" alt="Honda PCX 2025">
-            <div class="moto-card-info">
-                <h3>Honda PCX 2025</h3>
-                <p><i class="fas fa-check-circle" style="color:var(--primary)"></i> Nova geração</p>
-                <p><i class="fas fa-check-circle" style="color:var(--primary)"></i> Smart Key</p>
-                <p><i class="fas fa-check-circle" style="color:var(--primary)"></i> Economia imbatível</p>
+        <div class="card" data-aos="fade-left">
+            <img src="https://images.unsplash.com/photo-1599819811279-d5ad9cccf838?q=80&w=800" alt="Honda PCX 2025">
+            <div class="card-content">
+                <h3>HONDA PCX 2025</h3>
+                <p>Economia e tecnologia para o seu dia a dia. Aceitamos sua moto como entrada!</p>
                 <br>
-                <a href="https://wa.me/447517596540" class="btn-whatsapp" style="width: 100%; justify-content: center;">Quero esta</a>
+                <a href="https://wa.me/447517596540" class="btn-whatsapp">Tenho Interesse</a>
             </div>
         </div>
-    </section>
-
-    <section class="accessories-section">
-        <h2 data-aos="fade-down">Nossos Acessórios</h2>
-        <div class="swiper mySwiper">
-            <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                    <i class="fas fa-box"></i>
-                    <h3>Top Box 65LT</h3>
-                </div>
-                <div class="swiper-slide">
-                    <i class="fas fa-layer-group"></i>
-                    <h3>Rack</h3>
-                </div>
-                <div class="swiper-slide">
-                    <i class="fas fa-fire"></i>
-                    <h3>Hot Grips</h3>
-                </div>
-                <div class="swiper-slide">
-                    <i class="fas fa-sun"></i>
-                    <h3>Murff's Shade</h3>
-                </div>
-                <div class="swiper-slide">
-                    <i class="fas fa-mobile-alt"></i>
-                    <h3>Suporte de Celular</h3>
-                </div>
-                <div class="swiper-slide">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <h3>GPS Live Tracker</h3>
-                </div>
-            </div>
-            <div class="swiper-pagination"></div>
-        </div>
-    </section>
+    </div>
 
     <footer>
-        <div data-aos="fade-up">
-            <h3>Visite nossa loja</h3>
-            <p>836–840 Hertford Rd, Enfield EN3 6UE</p>
-            <p><i class="fas fa-coffee"></i> Atendimento com café cortesia!</p>
-            <br>
-            <div class="footer-links">
-                <a href="https://wa.me/447517596540"><i class="fab fa-whatsapp"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-            </div>
-            
-            <p class="credits">
-                &copy; 2025 Master Motorcycles. 
-                Criado por <a href="https://instagram.com/erikfritas" target="_blank">Erik Freitas @erikfritas</a>
-            </p>
+        <div class="contact-info">
+            <p>📍 836–840 Hertford Rd, Enfield EN3 6UE</p>
+            <p>📞 +44 7517 596540</p>
+            <p>☕ Venha tomar um café conosco e conhecer sua nova moto!</p>
         </div>
+        
+        <hr style="border: 0; border-top: 1px solid #222;">
+        
+        <p class="credits">
+            &copy; 2025 Master Motorcycles. Todos os direitos reservados. 
+            | Criado por <a href="https://instagram.com/erikfritas" target="_blank">Erik Freitas</a>
+        </p>
     </footer>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
-        // Inicializar Animações
         AOS.init({ duration: 1000, once: true });
-
-        // Inicializar Carrossel
-        var swiper = new Swiper(".mySwiper", {
-            slidesPerView: 1,
-            spaceBetween: 20,
-            loop: true,
-            autoplay: { delay: 2500, disableOnInteraction: false },
-            pagination: { el: ".swiper-pagination", clickable: true },
-            breakpoints: {
-                640: { slidesPerView: 2 },
-                1024: { slidesPerView: 4 }
-            }
-        });
     </script>
 </body>
 </html>
